@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>VideoKit</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="tailwind.min.css">
+  </head>
+  <body>
+    <script src="./renderer.js"></script>
+    <div class='container p-10 text-center'>
+
+      <input id='file' multiple='true' type="file" name="file" value="" />
+      <button onclick='submit(this)' class='text-lg rounded m-10 px-5 bg-yellow-300'>
+          开始压缩</button>
+
+      <p class="p-10 m-10" id='info'>
+      </p>
+    </div>
+  </body>
+</html>
