@@ -84,7 +84,7 @@ typings/
 
 # Webpack
 .webpack/
-vender/bin/*
+vendor/bin/win32/*
 
 # Electron-Forge
 out/

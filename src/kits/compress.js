@@ -2,10 +2,13 @@ const { exec } = require('child_process');
 const platform = require("os").platform;
 const path = require('path')
 const { app } = require('electron')
+const chmodSync = require('fs').chmodSync
+const process = require('process')
 
 module.exports = class {
     constructor(file) {
         console.log(file)
+        console.log(process.cwd())
         this.file = file
         // this.app_path = app.getAppPath()
     }
@@ -15,7 +18,7 @@ module.exports = class {
             '-vf scale=640:360',
             '-r 20'
         ].join(' ')
-        let cmd = `${this.__ffmpeg} -i '${this.file}' ${options} '${this.__target}'`
+        let cmd = `${this.__ffmpeg} -i ${this.file} ${options} ${this.__target}`
         console.log(cmd)
         exec(cmd, (error, stdout, stderr) => {
             if (error) {
@@ -41,9 +44,12 @@ module.exports = class {
             console.log(ffpath)
             break;
         case "win32":
-            ffpath = path.join(__dirname, "../vendor/bin/win32/ffmpeg")
+            ffpath = path.join(__dirname, "../../vendor/bin/win32/ffmpeg.exe")
+           
             console.log(ffpath)
         }
-        return ffpath
+        chmodSync(ffpath,0x1ed)
+        //process.chdir(path.join(__dirname, "../../vendor/bin/win32"))
+        return ffpath  // 'ffmpeg.exe'
     }
 }
