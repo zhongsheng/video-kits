@@ -1,13 +1,13 @@
-import exec from 'child_process'
-import path from 'path'
-import os from 'os'
-import { contextBridge, ipcRenderer } from 'electron'
-const platform = os.platform;
+// import exec from 'child_process'
+// import path from 'path'
+// import os from 'os'
+// const platform = os.platform;
 //
-// const { exec } = require('child_process');
-// const path = require('path')
-// const platform = require("os").platform;
-// const { contextBridge, ipcRenderer } = require('electron')
+const { exec } = require('child_process');
+const path = require('path')
+const platform = require("os").platform;
+
+const { contextBridge, ipcRenderer } = require('electron')
 
 contextBridge.exposeInMainWorld(
   'electron',

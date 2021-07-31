@@ -6,7 +6,6 @@
 // process.
 
 
-
 function submit(event){
     let files = document.getElementById('file').files
     if(files.length == 0) {
