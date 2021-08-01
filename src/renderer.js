@@ -21,13 +21,14 @@ function submit(btn){
     files_ary.forEach( file => {
         let div = document.createElement('div')
         counter++
-        console.log(file.path)
         electron.compress_mp4(file.path, size, (target)=> {
             counter--
             if(counter == 0) btn.style.display = ''
-            div.innerHTML = `<p class='text-green-500'>${file.name}
-<button class='bg-yellow-300 text-gray-900' onclick='electron.open_dir("${target}")'>打开</button>
-</p>`
+            div.innerHTML = `<p>${file.name} 完成 点击打开</p>`
+            div.classList.add('text-green-300')
+            div.addEventListener('click', ()=>{
+                electron.open_dir(target)
+            })
         })
 
         div.innerHTML = `<p>${file.name} 转换开始</p>`

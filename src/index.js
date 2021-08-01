@@ -49,5 +49,4 @@ app.on('activate', () => {
 // code. You can also put them in separate files and import them here.
 ipcMain.on('open--dir', (event, arg) => {
   shell.showItemInFolder(arg)
-  console.log(arg) // prints "ping"
 })

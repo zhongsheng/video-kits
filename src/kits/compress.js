@@ -24,7 +24,9 @@ module.exports = class {
 
     get __target(){
         const regex = /\.mov$|\.mp4$/i;
-        return this.file.replace(regex, '_resized.mp4')
+        return path.normalize(
+             this.file.replace(regex, '_resized.mp4')
+        )
     }
 
     get __ffmpeg(){
