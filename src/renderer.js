@@ -13,9 +13,10 @@ function submit(event){
         return
     }
     let files_ary = Array.from(files);
+    const size = document.getElementById('size').value
     files_ary.forEach( file => {
         console.log(file.path)
-        electron.compress_mp4(file.path)
+        electron.compress_mp4(file.path, size)
         document.getElementById('info').innerHTML = `${file.name} 开始转换, 请稍候`
     } )
 }

@@ -3,32 +3,26 @@ const platform = require("os").platform;
 const path = require('path')
 const { app } = require('electron')
 const chmodSync = require('fs').chmodSync
-const process = require('process')
+const ffmpeg = require('fluent-ffmpeg');
+
 
 module.exports = class {
     constructor(file) {
         console.log(file)
-        console.log(process.cwd())
         this.file = file
-        // this.app_path = app.getAppPath()
+        ffmpeg.setFfmpegPath(this.__ffmpeg);
     }
 
-    exec() {
-        let options = [
-            '-vf scale=640:360',
-            '-r 20'
-        ].join(' ')
-        let cmd = `${this.__ffmpeg} -i ${this.file} ${options} ${this.__target}`
-        console.log(cmd)
-        exec(cmd, (error, stdout, stderr) => {
-            if (error) {
-                console.error(`exec error: ${error}`);
-                return;
-            }
-            alert('转换成功')
-            console.log(`stdout: ${stdout}`);
-            console.error(`stderr: ${stderr}`);
-        });
+    exec(size) {
+        // let options = [
+        //     `-vf scale=${size}`,
+        //     '-r 20'
+        // ].join(' ')
+        // let cmd = `${this.__ffmpeg} -i ${this.file} ${options} ${this.__target}`
+        // console.log(cmd)
+        ffmpeg(this.file).output(this.__target).size('50%').on('end', function() {
+            console.log('Finished processing');
+        }).run()
     }
 
     get __target(){

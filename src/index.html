@@ -1,22 +1,30 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>VideoKit</title>
-    <link rel="stylesheet" href="index.css">
-    <link rel="stylesheet" href="tailwind.min.css">
-  </head>
-  <body>
-    <script src="./renderer.js"></script>
-    <div class='container p-10 text-center'>
+    <head>
+        <meta charset="UTF-8">
+        <title>VideoKit</title>
+        <link rel="stylesheet" href="index.css">
+        <link rel="stylesheet" href="tailwind.min.css">
+    </head>
+    <body>
+        <script src="./alpine.min.js"></script>
+        <script src="./renderer.js"></script>
+        <div class='container p-10 text-center'>
 
-      <input id='file' multiple='true' type="file" name="file" value="" />
-      <button onclick='submit(this)' class='text-lg rounded m-10 px-5 bg-yellow-300'>
-          开始压缩</button>
+            <input id='file' multiple='true' type="file" name="file" value="" />
+            <div x-data="{ size: '640:360' }">
+                <button x-on:click="size = '360:640'">竖屏</button>
+                <br />
+                <button x-on:click="size = '640:360'">横屏</button>
+                <br />
+                <input type="text" name="size" x-bind:value="size" id='size' />
+            </div>
+            <button onclick='submit(this)' class='text-lg rounded m-10 px-5 bg-yellow-300'>
+                开始压缩</button>
 
-      <p class="p-10 m-10" id='info'>
-      </p>
-    </div>
+            <p class="p-10 m-10" id='info'>
+            </p>
+        </div>
 
-  </body>
+    </body>
 </html>
