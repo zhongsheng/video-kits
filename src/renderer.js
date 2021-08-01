@@ -26,14 +26,10 @@ function submit(btn){
             counter--
             if(counter == 0) btn.style.display = ''
             div.innerHTML = `<p class='text-green-500'>${file.name} 转换成功</p>`
-            // result.appendChild(div)
         })
 
         div.innerHTML = `<p>${file.name} 转换开始</p>`
         result.appendChild(div)
-        // result.appendChild(
-        //     document.createElement('div').innerHTML = `<p>${file.name} 开始转换</p>`
-        // )
     } )
 }
 
