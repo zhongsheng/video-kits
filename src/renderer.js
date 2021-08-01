@@ -22,10 +22,12 @@ function submit(btn){
         let div = document.createElement('div')
         counter++
         console.log(file.path)
-        electron.compress_mp4(file.path, size, ()=> {
+        electron.compress_mp4(file.path, size, (target)=> {
             counter--
             if(counter == 0) btn.style.display = ''
-            div.innerHTML = `<p class='text-green-500'>${file.name} 转换成功</p>`
+            div.innerHTML = `<p class='text-green-500'>${file.name}
+<button class='bg-yellow-300 text-gray-900' onclick='electron.open_dir("${target}")'>打开</button>
+</p>`
         })
 
         div.innerHTML = `<p>${file.name} 转换开始</p>`

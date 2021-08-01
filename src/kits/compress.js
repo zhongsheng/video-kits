@@ -14,18 +14,12 @@ module.exports = class {
     }
 
     exec(size, callback) {
-        // let options = [
-        //     `-vf scale=${size}`,
-        //     '-r 20'
-        // ].join(' ')
-        // let cmd = `${this.__ffmpeg} -i ${this.file} ${options} ${this.__target}`
-        // console.log(cmd)
         ffmpeg(this.file).output(this.__target).outputOptions([
             '-r 20'
-        ]).size(`${size}%`).on('end', function() {
-            console.log('Finished processing');
-            callback.call()
+        ]).size(`${size}%`).on('end', ()=>{
+            callback(this.__target)
         }).run()
+        return this
     }
 
     get __target(){
