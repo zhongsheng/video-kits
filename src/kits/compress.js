@@ -13,15 +13,18 @@ module.exports = class {
         ffmpeg.setFfmpegPath(this.__ffmpeg);
     }
 
-    exec(size) {
+    exec(size, callback) {
         // let options = [
         //     `-vf scale=${size}`,
         //     '-r 20'
         // ].join(' ')
         // let cmd = `${this.__ffmpeg} -i ${this.file} ${options} ${this.__target}`
         // console.log(cmd)
-        ffmpeg(this.file).output(this.__target).size('50%').on('end', function() {
+        ffmpeg(this.file).output(this.__target).outputOptions([
+            '-r 20'
+        ]).size(`${size}%`).on('end', function() {
             console.log('Finished processing');
+            callback.call()
         }).run()
     }
 

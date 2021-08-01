@@ -6,18 +6,34 @@
 // process.
 
 
-function submit(event){
+function submit(btn){
     let files = document.getElementById('file').files
+    let result = document.getElementById('info')
     if(files.length == 0) {
         alert('选择文件')
         return
     }
+
+    btn.style.display = 'none'
+    let counter = 0
     let files_ary = Array.from(files);
     const size = document.getElementById('size').value
     files_ary.forEach( file => {
+        let div = document.createElement('div')
+        counter++
         console.log(file.path)
-        electron.compress_mp4(file.path, size)
-        document.getElementById('info').innerHTML = `${file.name} 开始转换, 请稍候`
+        electron.compress_mp4(file.path, size, ()=> {
+            counter--
+            if(counter == 0) btn.style.display = ''
+            div.innerHTML = `<p class='text-green-500'>${file.name} 转换成功</p>`
+            // result.appendChild(div)
+        })
+
+        div.innerHTML = `<p>${file.name} 转换开始</p>`
+        result.appendChild(div)
+        // result.appendChild(
+        //     document.createElement('div').innerHTML = `<p>${file.name} 开始转换</p>`
+        // )
     } )
 }
 

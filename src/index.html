@@ -11,19 +11,33 @@
         <script src="./renderer.js"></script>
         <div class='container p-10 text-center'>
 
-            <input id='file' multiple='true' type="file" name="file" value="" />
-            <div x-data="{ size: '640:360' }">
-                <button x-on:click="size = '360:640'">竖屏</button>
-                <br />
-                <button x-on:click="size = '640:360'">横屏</button>
-                <br />
-                <input type="text" name="size" x-bind:value="size" id='size' />
+            <div class="py-5">
+                <input id='file' multiple='true' type="file" name="file" value="" />
             </div>
-            <button onclick='submit(this)' class='text-lg rounded m-10 px-5 bg-yellow-300'>
-                开始压缩</button>
 
-            <p class="p-10 m-10" id='info'>
-            </p>
+            <input class='w-full' type="range" min="10" max="90" step="5" id='size' value='50' list="tickmarks">
+
+            <datalist id="tickmarks" class='w-full flex justify-between'>
+                <option value="10" label="10%"></option>
+                <option value="20"></option>
+                <option value="30"></option>
+                <option value="40"></option>
+                <option value="50" label="50%"></option>
+                <option value="60"></option>
+                <option value="70"></option>
+                <option value="80"></option>
+                <option value="90" label="90%"></option>
+            </datalist>
+
+
+            <div class='h-20'>
+                <button onclick='submit(this)' class='text-lg rounded m-10 px-5 bg-yellow-300'>
+                    开始压缩</button>
+
+            </div>
+
+            <div class="mt-5" id='info'>
+            </div>
         </div>
 
     </body>
